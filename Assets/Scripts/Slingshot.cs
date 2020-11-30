@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject launchPoint;
+
+    private void Awake()
     {
-        
+        Transform lounchPointTrans = transform.Find("LaunchPoint");
+
+        launchPoint = lounchPointTrans.gameObject;
+
+        launchPoint.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseEnter()
     {
-        
+        //print("Slingshot: OnMouseEnter()");
+        launchPoint.SetActive(true);
+    }
+
+    private void OnMouseExit()
+    {
+        //print("Slingshot: OnMouseExit()");
+        launchPoint.SetActive(false);
     }
 }
