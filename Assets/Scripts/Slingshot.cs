@@ -56,6 +56,8 @@ public class Slingshot : MonoBehaviour
             projectileRigidbody.isKinematic = false;
             projectileRigidbody.velocity = -mouseDelta * velocityMult;
 
+            FollowCam.POI = projectile;                                        // Слежка за шаром.
+
             projectile = null;
         }
     }
@@ -63,9 +65,6 @@ public class Slingshot : MonoBehaviour
     private void OnMouseEnter()
     {
         launchPoint.SetActive(true);
-
-        projectileRigidbody = projectile.GetComponent<Rigidbody>();
-        projectileRigidbody.isKinematic = true;
     }
 
     private void OnMouseExit()
@@ -80,5 +79,8 @@ public class Slingshot : MonoBehaviour
         projectile = Instantiate(prefabProjectile);                 // Создать снаряд
         projectile.transform.position = launchPosition;             // Поместить в точку launchPoint
         projectile.GetComponent<Rigidbody>().isKinematic = true;    // Сделать его кинематическим
+
+        projectileRigidbody = projectile.GetComponent<Rigidbody>();
+        projectileRigidbody.isKinematic = true;
     }
 }
