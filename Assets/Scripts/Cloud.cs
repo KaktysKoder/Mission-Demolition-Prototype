@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Cloud : MonoBehaviour
 {
-    #region value
     [Header("Set in Inspector")]
     [SerializeField] private GameObject cloudSphere;
 
@@ -19,7 +18,6 @@ public class Cloud : MonoBehaviour
 
     private List<GameObject> spheres;
 
-    #endregion
     private void Start()
     {
         #region bone::unnecessary code
@@ -28,8 +26,8 @@ public class Cloud : MonoBehaviour
         // который всё это время находился на сцене как CloudSphere enabled = false, и вставим его в инспектор.
         // После чего спавним облока, и enabled = true Для всех дочерних объектов.
 
-        if (cloudSphere == null)
-            cloudSphere = GameObject.FindWithTag("CloudSphere");
+        //if (cloudSphere == null)
+        //    cloudSphere = GameObject.FindWithTag("CloudSphere");
         #endregion
 
         Respawn();
@@ -93,12 +91,12 @@ public class Cloud : MonoBehaviour
             #region bone::unnecessary code
             // Кастыль
             // Активируем заспавненные объекты, у которых  по умолчанию было enabled = false/ 
-            GameObject refToTheCloud = GameObject.Find("Cloud");
+            //GameObject refToTheCloud = GameObject.Find("Cloud");
 
-            foreach (Transform child in refToTheCloud.GetComponentInChildren<Transform>())
-            {
-                child.GetComponentInChildren<MeshRenderer>().enabled = true;
-            }
+            //foreach (Transform child in refToTheCloud.GetComponentInChildren<Transform>())
+            //{
+            //    child.GetComponentInChildren<MeshRenderer>().enabled = true;
+            //}
             #endregion
         }
     }
