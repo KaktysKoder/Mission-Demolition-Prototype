@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\Slingshot.cs" />
     <Compile Include="Assets\Scripts\CloudCrafter.cs" />
     <Compile Include="Assets\Scripts\FollowCam.cs" />
+    <Compile Include="Assets\Scripts\RigidbodySleep.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
