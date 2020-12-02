@@ -8,16 +8,16 @@ public class Slingshot : MonoBehaviour
 
     [Header("Set Dynamically")]
     [SerializeField] private GameObject launchPoint;
-    [SerializeField] private GameObject projectile;         // это ссылка на вновь созданный экземпляр Projectile.
+    [SerializeField] private GameObject projectile;                          // это ссылка на вновь созданный экземпляр Projectile.
 
-    public Vector3 launchPosition;                          // хранит трехмерные мировые координаты launchPoint.
+    public Vector3 launchPosition;                                           // хранит трехмерные мировые координаты launchPoint.
     public bool aimingMode;
 
     private Rigidbody projectileRigidbody;
 
     private void Awake()
     {
-        Transform launchPointTransform = transform.Find("LaunchPoint"); // Находим игравой обхект LaunchPoint, сохраняем его в launchPoint, деактивируем.
+        Transform launchPointTransform = transform.Find("LaunchPoint");      // Находим игравой обхект LaunchPoint, сохраняем его в launchPoint, деактивируем.
 
         launchPoint = launchPointTransform.gameObject;
         launchPoint.SetActive(false);
@@ -27,9 +27,9 @@ public class Slingshot : MonoBehaviour
 
     private void Update()
     {
-        if (!aimingMode) return;                                            // Если рогатка не в режиме прицеливания, не выполнять этот код
+        if (!aimingMode) return;                                             // Если рогатка не в режиме прицеливания, не выполнять этот код
 
-        Vector3 mousePosition2D = Input.mousePosition;                      // Получить текущие координаты указателя мыши
+        Vector3 mousePosition2D = Input.mousePosition;                       // Получить текущие координаты указателя мыши
 
         mousePosition2D.z = -Camera.main.transform.position.z;
 
@@ -51,12 +51,12 @@ public class Slingshot : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            aimingMode = false;                                               // Кнопка мыши отпущена
+            aimingMode = false;                                              // Кнопка мыши отпущена
 
             projectileRigidbody.isKinematic = false;
             projectileRigidbody.velocity = -mouseDelta * velocityMult;
 
-            FollowCam.POI = projectile;                                        // Слежка за шаром.
+            FollowCam.POI = projectile;                                      // Слежка за шаром.
 
             projectile = null;
         }

@@ -2,12 +2,12 @@
 
 public class FollowCam : MonoBehaviour
 {
-    public static GameObject POI;   // Ссылка на интересующий объект. // point of interest
+    public static GameObject POI;             // Ссылка на интересующий объект. // point of interest
 
     [Header("Set Dynamically")]
-    public float cameraZ;           // Желаемая координата Z камеры.
+    public float cameraZ;                     // Желаемая координата Z камеры.
 
-    private float easing = 0.05f;   // ослабление
+    private float easing = 0.05f;             // ослабление
     public Vector2 minXY = Vector2.zero;
 
     private void Awake()
@@ -17,7 +17,7 @@ public class FollowCam : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (POI == null) return; // Выйти, если нет интересующего объекта.
+        if (POI == null) return;             // Выйти, если нет интересующего объекта.
 
         // Получить позицию интересующего объекта.
         Vector3 destination = POI.transform.position;

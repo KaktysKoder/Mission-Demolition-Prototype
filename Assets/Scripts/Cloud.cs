@@ -18,9 +18,43 @@ public class Cloud : MonoBehaviour
     public Vector3 sphereScaleRangeZ = new Vector3(2, 4);
 
     private List<GameObject> spheres;
-    #endregion
 
+    #endregion
     private void Start()
+    {
+        #region bone::unnecessary code
+        // Если вдруг произойдёт ситуация при которой объект cloudSphere потеряет
+        // в инспекторе ссылку на префаб. Создаём кастыль, который найдёт невидимый объект cloudSphere
+        // который всё это время находился на сцене как CloudSphere enabled = false, и вставим его в инспектор.
+        // После чего спавним облока, и enabled = true Для всех дочерних объектов.
+
+        if (cloudSphere == null)
+            cloudSphere = GameObject.FindWithTag("CloudSphere");
+        #endregion
+
+        Respawn();
+    }
+
+    private void Update()
+    {
+        #region Test::code
+        if (Input.GetKeyDown(KeyCode.Space))
+            Restart();
+
+        if (Input.GetKeyDown(KeyCode.B))
+            Respawn();
+        #endregion
+    }
+
+    private void Restart()
+    {
+        foreach (var sphere in spheres)
+        {
+            Destroy(sphere);    // Удалить старые сферы, состовляющие облоко
+        }
+    }
+
+    private void Respawn()
     {
         spheres = new List<GameObject>();
 
@@ -55,20 +89,17 @@ public class Cloud : MonoBehaviour
             scale.y = Mathf.Max(scale.y, scaleYMin);
 
             spTrans.localScale = scale;
-        }
-    }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Restart();
-    }
+            #region bone::unnecessary code
+            // Кастыль
+            // Активируем заспавненные объекты, у которых  по умолчанию было enabled = false/ 
+            GameObject refToTheCloud = GameObject.Find("Cloud");
 
-    private void Restart()
-    {
-        foreach (var sphere in spheres)
-        {
-            Destroy(sphere);    // Удалить старые сферы, состовляющие облоко
+            foreach (Transform child in refToTheCloud.GetComponentInChildren<Transform>())
+            {
+                child.GetComponentInChildren<MeshRenderer>().enabled = true;
+            }
+            #endregion
         }
     }
 }
