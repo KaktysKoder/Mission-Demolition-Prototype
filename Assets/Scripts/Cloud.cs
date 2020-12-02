@@ -12,6 +12,7 @@ public class Cloud : MonoBehaviour
     public float scaleYMin = 2.0f;
 
     public Vector3 sphereOffsetScale = new Vector3(5, 2, 1);
+    
     public Vector3 sphereScaleRangeX = new Vector3(4, 8);
     public Vector3 sphereScaleRangeY = new Vector3(3, 4);
     public Vector3 sphereScaleRangeZ = new Vector3(2, 4);
