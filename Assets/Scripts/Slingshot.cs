@@ -2,6 +2,8 @@
 
 public class Slingshot : MonoBehaviour
 {
+    private static Slingshot S;
+
     [Header("Set in Inspector")]
     [SerializeField] private GameObject prefabProjectile;
     [SerializeField] private float velocityMult = 8.0f;
@@ -17,6 +19,8 @@ public class Slingshot : MonoBehaviour
 
     private void Awake()
     {
+        S = this;
+
         Transform launchPointTransform = transform.Find("LaunchPoint");      // Находим игравой обхект LaunchPoint, сохраняем его в launchPoint, деактивируем.
 
         launchPoint = launchPointTransform.gameObject;
@@ -82,5 +86,15 @@ public class Slingshot : MonoBehaviour
 
         projectileRigidbody = projectile.GetComponent<Rigidbody>();
         projectileRigidbody.isKinematic = true;
+    }
+
+    public static Vector3 LAUNCH_POS
+    {
+        get
+        {
+            if (S == null) return Vector3.zero;
+
+            return S.launchPosition;
+        }
     }
 }
