@@ -46,7 +46,7 @@ public class MissionDemolition : MonoBehaviour
 
             SwitchView("Show Both");                        // Умениьшить масштаб.
 
-            Invoke("NextLevel", 2);                         // Начать новый уровень через 2 секнды.
+            Invoke("NextLevel", 2.0f);                         // Начать новый уровень через 2 секнды.
         }
     }
 
@@ -63,7 +63,7 @@ public class MissionDemolition : MonoBehaviour
 
         showing = eView;
 
-        switch (eView)
+        switch (showing)
         {
             case "Show Slingshot":
                 {
